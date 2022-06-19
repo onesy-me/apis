@@ -62,12 +62,12 @@
     "@amaui/utils" "^1.0.1874"
     "@babel/runtime" "^7.18.3"
 
-"@amaui/meta@^1.0.111":
-  version "1.0.111"
-  resolved "https://registry.yarnpkg.com/@amaui/meta/-/meta-1.0.111.tgz#4527f977d2fd21cd37216515cf3dfdcde7af80af"
-  integrity sha512-ROZbIxdKmb1mPvddhttlMWcIcUApJpG35uQLzA6ewL8SLV5KuzO5iNwiUK3vxzlsua3S22OWypJl7lUOKYnPTQ==
+"@amaui/meta@^1.0.1111":
+  version "1.0.1111"
+  resolved "https://registry.yarnpkg.com/@amaui/meta/-/meta-1.0.1111.tgz#e00872db5cc9f1bbb7c4ce50685182d9577b2d30"
+  integrity sha512-jOOCDbotCSF3+pGJ3bLeKXXYWDVxZp/bwq9XObKjiWzcQlSmr0dplx3TEqfnbiiL+30GNOBneB0YXp6ZV/k+rQ==
   dependencies:
-    "@amaui/utils" "^1.0.1874"
+    "@amaui/utils" "^1.0.11111"
     "@babel/runtime" "^7.18.3"
 
 "@amaui/models@^1.0.11":
@@ -98,10 +98,10 @@
     "@amaui/utils" "^1.0.1874"
     "@babel/runtime" "^7.18.3"
 
-"@amaui/test@^1.0.1117":
-  version "1.0.1117"
-  resolved "https://registry.yarnpkg.com/@amaui/test/-/test-1.0.1117.tgz#b2869104bd4d5332a10d84dbd715e3e68f91bb76"
-  integrity sha512-d7mUQP/Bthldvl9xNY0mg9s/QTX4p2/4XUlXgDJwZRDnH758FvfmatpRG0uOmX4QAfWUA0unaIDi/N4xiJyLkA==
+"@amaui/test@^1.0.1141":
+  version "1.0.1141"
+  resolved "https://registry.yarnpkg.com/@amaui/test/-/test-1.0.1141.tgz#1df8f0694df7aafebdaeb76e75199d83415593a1"
+  integrity sha512-j4GmLJtYlhIMlXYNdr4o/qQweFGyoIiwLuZTwpxVqHWtVYkFG6CzYNsjBdXtsLxNIveRGkOJG13Hd2wLUfAQcg==
   dependencies:
     "@amaui/date" "^1.0.1111"
     "@amaui/diff" "^1.0.1111"
@@ -113,6 +113,16 @@
     "@babel/runtime" "^7.18.3"
     fast-glob "^3.2.11"
     yargs "^17.5.1"
+
+"@amaui/utils@^1.0.11111":
+  version "1.0.11111"
+  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.11111.tgz#dbecc4629ca5c6fe2699c0f42072a1f7c28d317e"
+  integrity sha512-5vB4/sGTv/tLG8ihNHShtXQtS47cqZgkU0EZS08ckARTEche/ZoxBW7OvncfAcI40925fn7M5KKRNubYBBU9QA==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    crypto-js "^4.1.1"
+    path-to-regexp "^6.2.0"
+    uuid "^8.3.2"
 
 "@amaui/utils@^1.0.1874":
   version "1.0.1874"
@@ -2193,7 +2203,7 @@ path-to-regexp@0.1.7:
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
-path-to-regexp@^6.2.1:
+path-to-regexp@^6.2.0, path-to-regexp@^6.2.1:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.2.1.tgz#d54934d6798eb9e5ef14e7af7962c945906918e5"
   integrity sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==
