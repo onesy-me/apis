@@ -1,6 +1,6 @@
 {
   "name": "@amaui/api",
-  "version": "1.0.11",
+  "version": "1.0.1111",
   "description": "API",
   "repository": "https://github.com/amaui-org/amaui-api.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -37,13 +37,13 @@
     "express": "^4.17.2"
   },
   "dependencies": {
-    "@amaui/meta": "^1.0.1111",
-    "@amaui/utils": "^1.0.11111",
+    "@amaui/meta": "^1.0.11111",
+    "@amaui/utils": "^1.0.11114",
     "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
-    "@amaui/models": "^1.0.11",
-    "@amaui/test": "^1.0.1141",
+    "@amaui/models": "^1.0.1111",
+    "@amaui/test": "^1.0.11111",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.17.12",
