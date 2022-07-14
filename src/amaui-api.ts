@@ -63,7 +63,7 @@ export function Routes(value: IRouteClass[], app: express.Application) {
 
             response.options ? args.push(response.response, response.options) : args.push(response);
 
-            // Each class has to have response method 
+            // Each class has to have response method
             instance.response(req, ...args);
           }
           catch (error) {
