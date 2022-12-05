@@ -50,6 +50,11 @@ export function Routes(value: IRouteClass[], app: express.Application) {
 
         // Main method (route), handler method
         async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+          const methods = {
+            response: instance.response?.bind(instance),
+            error: instance.error?.bind(instance)
+          };
+
           try {
             // Bind class this back to the route method
             const method = instance[route.key].bind(instance);
@@ -64,11 +69,11 @@ export function Routes(value: IRouteClass[], app: express.Application) {
             response.options ? args.push(response.response, response.options) : args.push(response);
 
             // Each class has to have response method
-            instance.response(req, ...args);
+            if (methods.response) methods.response.response(req, ...args);
           }
           catch (error) {
             // error method as well
-            instance.error(req, error);
+            if (methods.error) methods.error.error(req, error);
           }
         }
       );
