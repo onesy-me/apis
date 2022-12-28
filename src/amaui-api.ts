@@ -22,7 +22,7 @@ export interface IRoute {
   method: 'string';
   route: 'string';
   middlewares: Array<express.RequestHandler>;
-  key: 'string';
+  property: 'string';
 }
 
 export type TRouteArgs = Array<string | TMethod>;
@@ -50,14 +50,10 @@ export function Routes(value: IRouteClass[], app: express.Application) {
 
         // Main method (route), handler method
         async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-          const methods = {
-            response: instance.response?.bind(instance),
-            error: instance.error?.bind(instance)
-          };
 
           try {
             // Bind class this back to the route method
-            const method = instance[route.key].bind(instance);
+            const method = instance[route.property].bind(instance);
 
             // If a method is not async
             // it's just converted to Promise.resolve value
@@ -69,11 +65,11 @@ export function Routes(value: IRouteClass[], app: express.Application) {
             response.options ? args.push(response.response, response.options) : args.push(response);
 
             // Each class has to have response method
-            if (methods.response) methods.response.response(req, ...args);
+            if (instance.response) instance.response(req, ...args);
           }
           catch (error) {
             // error method as well
-            if (methods.error) methods.error.error(req, error);
+            if (instance.error) instance.error(req, error);
           }
         }
       );

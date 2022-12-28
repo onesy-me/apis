@@ -62,12 +62,12 @@
     "@amaui/utils" "^1.0.11114"
     "@babel/runtime" "^7.18.3"
 
-"@amaui/meta@^1.0.11141":
-  version "1.0.11141"
-  resolved "https://registry.yarnpkg.com/@amaui/meta/-/meta-1.0.11141.tgz#d614bb0d9ffa9fb78979551429c03cc0af41f57e"
-  integrity sha512-NgoDzywvgHpk0qij6cxx0Acg7dloqFEzZcKRtD7exSzM7uqSJ8FVlXpVb57AVUfJfasl4nUXcwSZxAT9aRqAFQ==
+"@amaui/meta@^1.0.11143":
+  version "1.0.11143"
+  resolved "https://registry.yarnpkg.com/@amaui/meta/-/meta-1.0.11143.tgz#65ed75a4836e45b4710cd5554731d43ffd4dca8f"
+  integrity sha512-3X+EtWL91fKcAYCsBYm+5oJV0XLWrrr+mrfH0yyd6hCnKSh0GSmG7WPTHDM+8fS12JpRdJ1KEOFHsGx+L4HuCQ==
   dependencies:
-    "@amaui/utils" "^1.0.11411"
+    "@amaui/utils" "^1.0.11447"
     "@babel/runtime" "^7.18.3"
 
 "@amaui/models@^1.0.1111":
@@ -124,10 +124,10 @@
     path-to-regexp "^6.2.0"
     uuid "^8.3.2"
 
-"@amaui/utils@^1.0.11411":
-  version "1.0.11411"
-  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.11411.tgz#6ea9d62aa2b4570db34c3028a9c2242c71feb49d"
-  integrity sha512-a0IIjJIKwqE4yggUjImRlLlDZ9RHQdNYcrjW6JYMWSDD3IV6AvgQEBRitCWogErXgTP4w1quN9LhENN48aTwaQ==
+"@amaui/utils@^1.0.11447":
+  version "1.0.11447"
+  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.11447.tgz#a428721fc23a3e71260810325918d8b14160e857"
+  integrity sha512-km90as9RpEsCYtDRI1x0EySobBWzmcgosK3bWP4BSHMdIulPNGlJ/yqlshOCGYYWDjrEUHFn5xZ1KEf4LhpZ3A==
   dependencies:
     "@babel/runtime" "^7.18.3"
     crypto-js "^4.1.1"
