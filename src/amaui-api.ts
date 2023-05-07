@@ -5,8 +5,13 @@ import { TMethod, TObject } from '@amaui/models';
 
 // Any class with some required methods and,
 // any methods interface
+export interface IResponseOptions {
+  method: 'json' | 'send';
+  type: 'application/json';
+}
+
 export interface IRouteClassInstance {
-  response: (req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) => any;
+  response: (req: express.Request, response: express.Response, options: IResponseOptions) => any;
 
   error: (req: express.Request, error: Error) => any;
 
