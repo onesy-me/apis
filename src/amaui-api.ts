@@ -10,10 +10,17 @@ export interface IResponseOptions {
   type: 'application/json';
 }
 
-export interface IRouteClassInstance {
-  response: (req: express.Request, response: express.Response, options: IResponseOptions) => any;
+export interface IRouteClassInstanceResponse {
+  status: number;
+  type: string;
+  method: string;
+  response: any;
+}
 
-  error: (req: express.Request, error: Error) => any;
+export interface IRouteClassInstance {
+  response: (req: express.Request, res: express.Response, next: express.NextFunction) => (response: express.Response, options: IResponseOptions) => IRouteClassInstanceResponse | Promise<IRouteClassInstanceResponse>;
+
+  error: (req: express.Request, res: express.Response, next: express.NextFunction) => (error: Error) => Error | Promise<Error>;
 
   [p: string]: any;
 }
@@ -55,7 +62,6 @@ export function Routes(value: IRouteClass[], app: express.Application) {
 
         // Main method (route), handler method
         async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-
           try {
             // Bind class this back to the route method
             const method = instance[route.property].bind(instance);
@@ -70,11 +76,15 @@ export function Routes(value: IRouteClass[], app: express.Application) {
             response.options ? args.push(response.response, response.options) : args.push(response);
 
             // Each class has to have response method
-            if (instance.response) instance.response(req, ...args);
+            if (instance.response) return await instance.response(req, res, next)(...args);
+
+            return res.status(200).json(response);
           }
           catch (error) {
             // error method as well
-            if (instance.error) instance.error(req, error);
+            if (instance.error) return await instance.error(req, res, next)(error);
+
+            return next(error);
           }
         }
       );
