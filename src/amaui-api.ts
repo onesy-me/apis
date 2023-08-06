@@ -10,17 +10,10 @@ export interface IResponseOptions {
   type: 'application/json';
 }
 
-export interface IRouteClassInstanceResponse {
-  status: number;
-  type: string;
-  method: string;
-  response: any;
-}
-
 export interface IRouteClassInstance {
-  response: (req: express.Request, res: express.Response, next: express.NextFunction) => (response: express.Response, options: IResponseOptions) => IRouteClassInstanceResponse | Promise<IRouteClassInstanceResponse>;
+  response: (req: express.Request, res: express.Response, next: express.NextFunction) => (response: express.Response, options: IResponseOptions) => any | Promise<any>;
 
-  error: (req: express.Request, res: express.Response, next: express.NextFunction) => (error: Error) => Error | Promise<Error>;
+  error: (req: express.Request, res: express.Response, next: express.NextFunction) => (error: Error) => any | Promise<any>;
 
   [p: string]: any;
 }
