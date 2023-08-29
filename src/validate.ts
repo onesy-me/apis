@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getObjectProperties, merge, parse, equalDeep, stringify } from '@amaui/utils';
+import { getObjectProperties, merge, parse, equalDeep, stringify, cleanValue } from '@amaui/utils';
 import is, { TIsType, IOptions as IIsOptions } from '@amaui/utils/is';
 import isValid, { TIsValidType, IOptions as IIsValidOptions } from '@amaui/utils/isValid';
 import { ValidationError } from '@amaui/errors';
@@ -121,7 +121,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
     const keys = Object.keys(values);
 
     for (const key of keys) {
-      const name = optionsProperty.name !== undefined ? optionsProperty.name : key;
+      const name = cleanValue(optionsProperty.name !== undefined ? optionsProperty.name : key);
 
       const value = values[key];
 
@@ -144,7 +144,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
         const response = is(itemType as TIsType, value, itemOptions);
 
-        if (!response) onValidateError(options, optionsProperty, `${name} has to be a valid ${itemType}`);
+        if (!response) onValidateError(options, optionsProperty, `${name} has to be a valid ${cleanValue(itemType as string)}`);
       }
 
       // is valid
@@ -156,7 +156,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
         const response = isValid(itemType as TIsValidType, value, itemOptions);
 
-        if (!response) onValidateError(options, optionsProperty, `${name} has to be a valid ${itemType}`);
+        if (!response) onValidateError(options, optionsProperty, `${name} has to be a valid ${cleanValue(itemType as string)}`);
       }
 
       // of

@@ -134,10 +134,10 @@
     path-to-regexp "^6.2.0"
     uuid "^8.3.2"
 
-"@amaui/utils@^1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.1.7.tgz#c43041390210bf475a5522be2713be72c74b94c6"
-  integrity sha512-QpE3N+JvMWwswdgZlyTX8NzHZIbrpBTBhT7WfnQzK+a4vkj3VozWp5UbX2JJVrslFayq3FAZqraviRwxYuY2OQ==
+"@amaui/utils@^1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.1.11.tgz#cc76c6350df51940dea44f4496c2e7ebbb85423a"
+  integrity sha512-VQv4AdtsFK8urs0dF3BeDQhD1Ekv9Pzqt4DkxI9F6WvVMWIjLH1gjZLedP3p/hW1weYSA+zkAI00fx8oO3AStQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
     crypto-js "^4.1.1"
