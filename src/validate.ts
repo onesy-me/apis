@@ -93,7 +93,7 @@ export const onValidateError = (options: IValidateOptions, optionsModelItem: IVa
 };
 
 export async function validateModel(model: IValidateModel, req: express.Request, object: IValidateObject = 'body', options_?: IValidateOptions) {
-  const options = merge(options_, { uriDecode: true, parse: true });
+  const options = merge((options_ && is('object', options_)) ? options_ : {}, { uriDecode: true, parse: true });
 
   const objectRequest = req[object] || {};
 
@@ -103,7 +103,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
   // uri decode &
   // parse the values
   // to their original value
-  Object.keys(objectRequest).forEach(key => body[options.uriDecode ? decodeURIComponent(key) : key] = options.parse ? parse(objectRequest[key]) : objectRequest[key]);
+  Object.keys(objectRequest).forEach(key => body[options?.uriDecode ? decodeURIComponent(key) : key] = options?.parse ? parse(objectRequest[key]) : objectRequest[key]);
 
   // Move through all the
   // model keys, for each key
@@ -334,7 +334,9 @@ export async function validateModel(model: IValidateModel, req: express.Request,
             }
           );
 
-          if (!response) throw new ValidationError(`${name} is invalid`);
+          if (response !== undefined) {
+            if (!response) throw new ValidationError(`${name} is invalid`);
+          }
         }
         catch (error) {
           const messageValue = error?.message !== undefined ? error.message : error;
