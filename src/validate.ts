@@ -24,11 +24,11 @@ export interface IValidateModelValueIsValid {
 }
 
 export interface IValidateModelValueMethodOptions {
-  request: express.Request,
-  object: Record<string, any>,
-  property: string,
-  path: string,
-  options: IValidateModelValue
+  request: express.Request;
+  object: Record<string, any>;
+  property: string;
+  path: string;
+  options: IValidateModelValue;
 }
 
 export type IValidateModelValueMethod = (value: any, options: IValidateModelValueMethodOptions) => Promise<any> | any;
