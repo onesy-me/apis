@@ -144,59 +144,67 @@ export async function validateModel(model: IValidateModel, req: express.Request,
       }
 
       // is
-      const is_ = ((is('array', optionsProperty.is) ? optionsProperty.is : [optionsProperty.is]) as IValidateModelValueIs[]).filter(Boolean);
+      if (optionsProperty.is !== undefined) {
+        const is_ = ((is('array', optionsProperty.is) ? optionsProperty.is : [optionsProperty.is]) as IValidateModelValueIs[]).filter(Boolean);
 
-      for (const item of is_) {
-        const itemType = item?.type || item;
-        const itemOptions = item?.options || undefined;
+        for (const item of is_) {
+          const itemType = item?.type || item;
+          const itemOptions = item?.options || undefined;
 
-        const response = is(itemType as TIsType, value, itemOptions);
+          const response = is(itemType as TIsType, value, itemOptions);
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.is || `${name} has to be a valid ${cleanValue(itemType as string)}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.is || `${name} has to be a valid ${cleanValue(itemType as string)}`);
+        }
       }
 
       // is valid
-      const isValid_ = ((is('array', optionsProperty.isValid) ? optionsProperty.isValid : [optionsProperty.isValid]) as IValidateModelValueIsValid[]).filter(Boolean);
+      if (optionsProperty.isValid !== undefined) {
+        const isValid_ = ((is('array', optionsProperty.isValid) ? optionsProperty.isValid : [optionsProperty.isValid]) as IValidateModelValueIsValid[]).filter(Boolean);
 
-      for (const item of isValid_) {
-        const itemType = item?.type || item;
-        const itemOptions = item?.options || undefined;
+        for (const item of isValid_) {
+          const itemType = item?.type || item;
+          const itemOptions = item?.options || undefined;
 
-        const response = isValid(itemType as TIsValidType, value, itemOptions);
+          const response = isValid(itemType as TIsValidType, value, itemOptions);
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.isValid || `${name} has to be a valid ${cleanValue(itemType as string)}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.isValid || `${name} has to be a valid ${cleanValue(itemType as string)}`);
+        }
       }
 
       // of
-      const of_ = ((is('array', optionsProperty.of) ? optionsProperty.of : [optionsProperty.of]) as IValidateModelValueIs[]).filter(Boolean);
+      if (optionsProperty.of !== undefined) {
+        const of_ = ((is('array', optionsProperty.of) ? optionsProperty.of : [optionsProperty.of]) as IValidateModelValueIs[]).filter(Boolean);
 
-      if (is('array', value)) {
-        const response = value.every(valueItem => {
-          return of_.some(item => {
-            const itemType = item?.type || item;
-            const itemOptions = item?.options || undefined;
+        if (is('array', value)) {
+          const response = value.every(valueItem => {
+            return of_.some(item => {
+              const itemType = item?.type || item;
+              const itemOptions = item?.options || undefined;
 
-            return is(itemType as any, valueItem, itemOptions);
+              return is(itemType as any, valueItem, itemOptions);
+            });
           });
-        });
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.of || `${name} items have to be one of ${of_.map(item => item?.type || item).join(', ')}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.of || `${name} items have to be one of ${of_.map(item => item?.type || item).join(', ')}`);
+        }
       }
 
       // ofValid
-      const ofValid = ((is('array', optionsProperty.ofValid) ? optionsProperty.ofValid : [optionsProperty.ofValid]) as IValidateModelValueIs[]).filter(Boolean);
+      if (optionsProperty.ofValid !== undefined) {
+        const ofValid = ((is('array', optionsProperty.ofValid) ? optionsProperty.ofValid : [optionsProperty.ofValid]) as IValidateModelValueIs[]).filter(Boolean);
 
-      if (is('array', value)) {
-        const response = value.every(valueItem => {
-          return ofValid.some(item => {
-            const itemType = item?.type || item;
-            const itemOptions = item?.options || undefined;
+        if (is('array', value)) {
+          const response = value.every(valueItem => {
+            return ofValid.some(item => {
+              const itemType = item?.type || item;
+              const itemOptions = item?.options || undefined;
 
-            return isValid(itemType as any, valueItem, itemOptions);
+              return isValid(itemType as any, valueItem, itemOptions);
+            });
           });
-        });
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.ofValid || `${name} items have to be one of valid ${ofValid.map(item => item?.type || item).join(', ')}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.ofValid || `${name} items have to be one of valid ${ofValid.map(item => item?.type || item).join(', ')}`);
+        }
       }
 
       // equal
