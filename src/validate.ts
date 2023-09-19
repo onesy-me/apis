@@ -128,6 +128,10 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
     const keys = Object.keys(values);
 
+    if (optionsProperty.required && !keys.length) {
+      onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${optionsProperty?.name || property} is required`);
+    }
+
     for (const key of keys) {
       const name = cleanValue(optionsProperty.name !== undefined ? optionsProperty.name : key);
 
