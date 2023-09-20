@@ -144,8 +144,13 @@ export async function validateModel(model: IValidateModel, req: express.Request,
       if (optionsProperty.required) {
         const response = value;
 
-        if (response === undefined) onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${name} is required`);
+        if ([undefined].includes(response)) onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${name} is required`);
       }
+
+      // if null
+      // used for unsetting a value
+      // do not check for it
+      if ([null].includes(value)) return;
 
       // is
       if (optionsProperty.is !== undefined) {
