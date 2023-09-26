@@ -101,7 +101,7 @@ export const onValidateError = (options: IValidateOptions, optionsModelItem: IVa
 };
 
 export async function validateModel(model: IValidateModel, req: express.Request, object: IValidateObject = 'body', options_?: IValidateOptions) {
-  const options = merge((options_ && is('object', options_)) ? options_ : {}, { uriDecode: true, parse: true });
+  const options = merge((options_ && is('object', options_)) ? options_ : {}, { uriDecode: true, parse: false });
 
   const objectRequest = req[object] || {};
 
@@ -374,7 +374,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 }
 
 export function validate(model: IValidateModel, object: IValidateObject = 'body', options_?: IValidateOptions) {
-  const options = merge(options_, { uriDecode: true, parse: true });
+  const options = merge(options_, { uriDecode: true, parse: false });
 
   async function method(req: express.Request, res: express.Response, next: express.NextFunction) {
     try {
