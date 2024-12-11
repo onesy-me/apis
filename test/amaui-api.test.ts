@@ -26,9 +26,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -67,9 +67,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -105,9 +105,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -143,9 +143,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -181,9 +181,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -219,9 +219,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -257,9 +257,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -295,9 +295,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
@@ -333,9 +333,9 @@ group('@onesy/api', () => {
         )
         public a() { }
 
-        public response(req: express.Request, response: express.Response, options: { method: 'json' | 'send', type: 'application/json', }) { return; }
+        public response(req: express.Request, response: express.Response, next: express.NextFunction): any { return; }
 
-        public error(req: express.Request, error: Error) { return; }
+        public error(req: express.Request, res: express.Response, next: express.NextFunction): any { return; }
       }
 
       const app = express();
