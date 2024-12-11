@@ -1,7 +1,7 @@
 import express from 'express';
 
-import AmauiMeta from '@amaui/meta';
-import { TMethod, TObject } from '@amaui/models';
+import OnesyMeta from '@onesy/meta';
+import { TMethod, TObject } from '@onesy/models';
 
 // Any class with some required methods and,
 // any methods interface
@@ -36,9 +36,9 @@ export function Routes(value: IRouteClass[], app: express.Application) {
   value.forEach(Class => {
     const instance = new Class();
 
-    const root_route = AmauiMeta.get('route', Class);
-    const middlewares = AmauiMeta.get('middlewares', Class) || [];
-    const routes: Array<IRoute> = AmauiMeta.get('routes', Class) || [];
+    const root_route = OnesyMeta.get('route', Class);
+    const middlewares = OnesyMeta.get('middlewares', Class) || [];
+    const routes: Array<IRoute> = OnesyMeta.get('routes', Class) || [];
 
     routes.forEach(route => {
       // Register each route in the app
@@ -88,18 +88,18 @@ export function Routes(value: IRouteClass[], app: express.Application) {
 
 export function Route(...args: TRouteArgs): ClassDecorator {
   return (object: TObject) => {
-    AmauiMeta.add('route', args[0], object);
-    AmauiMeta.add('middlewares', args.slice(1), object);
+    OnesyMeta.add('route', args[0], object);
+    OnesyMeta.add('middlewares', args.slice(1), object);
 
-    if (!AmauiMeta.has('routes', object)) AmauiMeta.add('routes', [], object);
+    if (!OnesyMeta.has('routes', object)) OnesyMeta.add('routes', [], object);
   };
 }
 
 export function Method(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: args[0],
@@ -108,15 +108,15 @@ export function Method(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Get(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'get',
@@ -125,15 +125,15 @@ export function Get(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Post(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'post',
@@ -142,15 +142,15 @@ export function Post(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Put(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'put',
@@ -159,15 +159,15 @@ export function Put(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Patch(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'patch',
@@ -176,15 +176,15 @@ export function Patch(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Head(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'head',
@@ -193,15 +193,15 @@ export function Head(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Options(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'options',
@@ -210,15 +210,15 @@ export function Options(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }
 
 export function Delete(...args: TRouteArgs): MethodDecorator {
   return (object: TObject, property: string): void => {
-    if (!AmauiMeta.has('routes', object.constructor)) AmauiMeta.add('routes', [], object.constructor);
+    if (!OnesyMeta.has('routes', object.constructor)) OnesyMeta.add('routes', [], object.constructor);
 
-    const routes = AmauiMeta.get('routes', object.constructor) || [];
+    const routes = OnesyMeta.get('routes', object.constructor) || [];
 
     routes.push({
       method: 'delete',
@@ -227,6 +227,6 @@ export function Delete(...args: TRouteArgs): MethodDecorator {
       property,
     });
 
-    AmauiMeta.add('routes', routes, object.constructor);
+    OnesyMeta.add('routes', routes, object.constructor);
   };
 }

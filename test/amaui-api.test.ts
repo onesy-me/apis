@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
 import express from 'express';
 
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { Routes, Route, Method, Get, Post, Put, Patch, Options, Head, Delete, IRouteClassInstance } from '../src';
 
-group('@amaui/api', () => {
+group('@onesy/api', () => {
 
   group('decorators', () => {
 

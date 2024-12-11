@@ -1,8 +1,8 @@
 {
-  "name": "@amaui/api",
+  "name": "@onesy/api",
   "version": "1.0.38",
   "description": "API",
-  "repository": "https://github.com/amaui-org/amaui-api.git",
+  "repository": "https://github.com/onesy-org/onesy-api.git",
   "author": "Lazar <lazareric2@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -21,7 +21,7 @@
     "node",
     "nodejs",
     "library",
-    "amaui",
+    "onesy",
     "utils"
   ],
   "scripts": {
@@ -30,21 +30,21 @@
     "release": "yarn build && yarn version --patch --no-git-tag-version && yarn build && cd ./build && npm publish",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "type": "tsc --noEmit -p tsconfig.json",
-    "cov": "cross-env NODE_ENV=test amaui-test",
+    "cov": "cross-env NODE_ENV=test onesy-test",
     "test": "yarn lint && yarn type && yarn build && yarn cov"
   },
   "peerDependencies": {
     "express": "^4.17.2"
   },
   "dependencies": {
-    "@amaui/errors": "^1.0.111",
-    "@amaui/meta": "^1.0.11143",
+    "@onesy/errors": "^1.0.111",
+    "@onesy/meta": "^1.0.11143",
     "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
-    "@amaui/models": "^1.0.1111",
-    "@amaui/test": "^1.0.11111",
-    "@amaui/utils": "^1.1.12",
+    "@onesy/models": "^1.0.1111",
+    "@onesy/test": "^1.0.11111",
+    "@onesy/utils": "^1.1.12",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.17.12",

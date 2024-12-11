@@ -4,11 +4,11 @@
 
 <p align='center'>
   <a target='_blank' rel='noopener noreferrer' href='#'>
-    <img src='utils/images/logo.svg' alt='amaui logo' />
+    <img src='utils/images/logo.svg' alt='onesy logo' />
   </a>
 </p>
 
-<h1 align='center'>amaui API</h1>
+<h1 align='center'>onesy API</h1>
 
 <p align='center'>
   API
@@ -38,14 +38,14 @@
 ### Add
 
 ```sh
-yarn add @amaui/api
+yarn add @onesy/api
 ```
 
 ### Use
 
 ```javascript
   import express from 'express';
-  import { Route, Method, IRouteClassInstance, Routes } from '@amaui/api';
+  import { Route, Method, IRouteClassInstance, Routes } from '@onesy/api';
 
   class Base implements IRouteClassInstance {
 
