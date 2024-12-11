@@ -31,7 +31,7 @@ npm manifest:
     "name": "@onesy/api",
     "version": "1.0.1111",
     "description": "API",
-    "repository": "https://github.com/onesy-org/onesy-api.git",
+    "repository": "https://github.com/onesy-me/api.git",
     "author": "Lazar <lazareric.com@gmail.com>",
     "license": "MIT",
     "private": false,
