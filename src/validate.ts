@@ -5,6 +5,8 @@ import is, { TIsType, IOptions as IIsOptions } from '@onesy/utils/is';
 import isValid, { TIsValidType, IOptions as IIsValidOptions } from '@onesy/utils/isValid';
 import { ValidationError } from '@onesy/errors';
 
+const l = (value: any) => value;
+
 export interface IValidateOptions {
   message?: string;
   uriDecode?: boolean;
@@ -129,7 +131,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
     const keys = Object.keys(values);
 
     if (optionsProperty.required && !keys.length) {
-      onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${optionsProperty?.name || property} is required`);
+      onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${optionsProperty?.name || property} ${l('is required')}`);
     }
 
     for (const key of keys) {
@@ -144,7 +146,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
       if (optionsProperty.required) {
         const response = value;
 
-        if ([undefined].includes(response)) onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${name} is required`);
+        if ([undefined].includes(response)) onValidateError(options, optionsProperty, optionsProperty.messages?.required || `${name} ${l('is required')}`);
       }
 
       // if null
@@ -162,7 +164,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
           const response = is(itemType as TIsType, value, itemOptions);
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.is || `${name} has to be a valid ${cleanValue(itemType as string)}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.is || `${name} ${l('has to be a valid')} ${cleanValue(itemType as string)}`);
         }
       }
 
@@ -176,7 +178,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
           const response = isValid(itemType as TIsValidType, value, itemOptions);
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.isValid || `${name} has to be a valid ${cleanValue(itemType as string)}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.isValid || `${name} ${l('has to be a valid')} ${cleanValue(itemType as string)}`);
         }
       }
 
@@ -194,7 +196,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
             });
           });
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.of || `${name} items have to be one of ${of_.map(item => item?.type || item).join(', ')}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.of || `${name} ${l('items have to be one of')} ${of_.map(item => item?.type || item).join(', ')}`);
         }
       }
 
@@ -212,7 +214,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
             });
           });
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.ofValid || `${name} items have to be one of valid ${ofValid.map(item => item?.type || item).join(', ')}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.ofValid || `${name} ${l('items have to be one of valid')} ${ofValid.map(item => item?.type || item).join(', ')}`);
         }
       }
 
@@ -220,28 +222,28 @@ export async function validateModel(model: IValidateModel, req: express.Request,
       if (optionsProperty.equal !== undefined) {
         const response = value === optionsProperty.equal;
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.equal || `${name} has to be equal to ${stringify(optionsProperty.equal)}`);
+        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.equal || `${name} ${l('has to be equal to')} ${stringify(optionsProperty.equal)}`);
       }
 
       // not equal
       if (optionsProperty.notEqual !== undefined) {
         const response = value !== optionsProperty.equal;
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.notEqual || `${name} has to not be equal to ${stringify(optionsProperty.equal)}`);
+        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.notEqual || `${name} ${l('has to not be equal to')} ${stringify(optionsProperty.equal)}`);
       }
 
       // equal deep
       if (optionsProperty.equalDeep !== undefined) {
         const response = equalDeep(value, optionsProperty.equalDeep);
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.equalDeep || `${name} has to be equal to ${stringify(optionsProperty.equalDeep)}`);
+        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.equalDeep || `${name} ${l('has to be equal to')} ${stringify(optionsProperty.equalDeep)}`);
       }
 
       // not equal deep
       if (optionsProperty.notEqualDeep !== undefined) {
         const response = !equalDeep(value, optionsProperty.notEqualDeep);
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.notEqualDeep || `${name} has to not be equal to ${stringify(optionsProperty.notEqualDeep)}`);
+        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.notEqualDeep || `${name} ${l('has to not be equal to')} ${stringify(optionsProperty.notEqualDeep)}`);
       }
 
       // some
@@ -251,12 +253,12 @@ export async function validateModel(model: IValidateModel, req: express.Request,
         if (is('string', value)) {
           response = !!optionsProperty.some.find(item => equalDeep(value, item));
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.some || `${name} has to be one of ${optionsProperty.some.map(item => stringify(item)).join(', ')}`)
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.some || `${name} ${l('has to be one of')} ${optionsProperty.some.map(item => stringify(item)).join(', ')}`)
         }
         else if (is('array', value)) {
           response = value.some(item => !!optionsProperty.some.find(item_ => equalDeep(item, item_)));
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.some || `${name} has to include some of ${optionsProperty.some.map(item => stringify(item)).join(', ')}`)
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.some || `${name} ${l('has to include some of')} ${optionsProperty.some.map(item => stringify(item)).join(', ')}`)
         }
       }
 
@@ -270,12 +272,12 @@ export async function validateModel(model: IValidateModel, req: express.Request,
         if (is('string', value)) {
           response = !!every.find(item => equalDeep(value, item));
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.in || optionsProperty.messages?.every || `${name} has to be one of ${every.map(item => stringify(item)).join(', ')}`)
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.in || optionsProperty.messages?.every || `${name} ${l('has to be one of')} ${every.map(item => stringify(item)).join(', ')}`)
         }
         else if (is('array', value)) {
           response = value.every(item => !!every.find(item_ => equalDeep(item, item_)));
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.in || optionsProperty.messages?.every || `${name} has to include one of ${every.map(item => stringify(item)).join(', ')}`)
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.in || optionsProperty.messages?.every || `${name} ${l('has to include one of')} ${every.map(item => stringify(item)).join(', ')}`)
         }
       }
 
@@ -287,7 +289,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
         const response = keys.every(item => allowed.includes(item));
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.properties || `${name} allowed properties are ${allowed.join(', ')}`);
+        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.properties || `${name} ${l('allowed properties are')} ${allowed.join(', ')}`);
       }
 
       // not properties
@@ -298,7 +300,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
 
         const response = keys.every(item => !notAllowed.includes(item));
 
-        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.notProperties || `${name} includes not allowed property. Not allowed properties are ${notAllowed.join(', ')}`);
+        if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.notProperties || `${name} ${l('includes not allowed property')}. ${l('Not allowed properties are')} ${notAllowed.join(', ')}`);
       }
 
       // min
@@ -326,19 +328,19 @@ export async function validateModel(model: IValidateModel, req: express.Request,
         if (is('number', optionsProperty.min)) {
           const response = length >= optionsProperty.min;
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.min || `${name} has to be minimum ${optionsProperty.min}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.min || `${name} ${l('has to be minimum')} ${optionsProperty.min}`);
         }
 
         if (is('number', optionsProperty.max)) {
           const response = length <= optionsProperty.max;
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.max || `${name} can be maximum ${optionsProperty.max}`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.max || `${name} ${l('can be maximum')} ${optionsProperty.max}`);
         }
 
         if (is('number', optionsProperty.length)) {
           const response = length === optionsProperty.length;
 
-          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.length || `${name} has to be exactly ${optionsProperty.length} in length/size`);
+          if (!response) onValidateError(options, optionsProperty, optionsProperty.messages?.length || `${name} ${l('has to be exactly')} ${optionsProperty.length} ${l('in length/size')}`);
         }
       }
 
@@ -360,7 +362,7 @@ export async function validateModel(model: IValidateModel, req: express.Request,
           );
 
           if (response !== undefined) {
-            if (!response) throw new ValidationError(`${name} is invalid`);
+            if (!response) throw new ValidationError(`${name} ${l('is invalid')}`);
           }
         }
         catch (error) {
